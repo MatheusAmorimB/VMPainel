@@ -7,7 +7,7 @@
     <title>Painel VM</title>
     <!-- Bootstrap -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/bootstrap-5.3.8.css" rel="stylesheet">
+	<link href="../css/bootstrap-5.3.8.css" rel="stylesheet">
 	
   </head>
 	
@@ -58,7 +58,7 @@
 			<div class="collapse navbar-collapse fs-5" id="painel">
 			  <ul class="navbar-nav ms-auto">
 				<li class="nav-item">
-				  <a class="nav-link text-light" href="painel.html">Painel</a>
+				  <a class="nav-link text-light" href="painel.php">Painel</a>
 				</li>
 			  </ul>
 			  <ul class="navbar-nav ms-3">
@@ -77,7 +77,7 @@
 				  <div class="card-body">
 					<h5 class="card-title">Novos Pedidos</h5>
 					<p class="card-text fs-1 mt-4">16</p>
-					<a class="btn btn-primary" href="painel.html" role="button">Verificar Pedidos</a>
+					<a class="btn btn-primary" href="painel.php" role="button">Verificar Pedidos</a>
 				  </div>
 				</div>
 			</div>
@@ -86,7 +86,7 @@
 				  <div class="card-body">
 					<h5 class="card-title">Pedidos em Produção</h5>
 					<p class="card-text fs-1 mt-4">32</p>
-					<a class="btn btn-primary" href="painel.html" role="button">Verificar Painel</a>
+					<a class="btn btn-primary" href="painel.php" role="button">Verificar Painel</a>
 				  </div>
 				</div>
 			</div>
@@ -95,7 +95,7 @@
 				  <div class="card-body">
 					<h5 class="card-title">Pedidos Atrasados</h5>
 					<p class="card-text fs-1 mt-4">4</p>
-					<a class="btn btn-danger" href="painel.html" role="button">Verificar Atrasados</a>
+					<a class="btn btn-danger" href="painel.php" role="button">Verificar Atrasados</a>
 				  </div>
 				</div>
 			</div>
@@ -104,7 +104,7 @@
 				  <div class="card-body">
 					<h5 class="card-title">Pedidos Enviados Hoje</h5>
 					<p class="card-text fs-1 mt-4">8</p>
-					<a class="btn btn-primary" href="painel.html" role="button">Verificar Enviados</a>
+					<a class="btn btn-primary" href="painel.php" role="button">Verificar Enviados</a>
 				  </div>
 				</div>
 			</div>
@@ -166,8 +166,8 @@
 	
 
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="js/popper-2.11.8.min.js"></script> 
-  	<script src="js/bootstrap-5.3.8.js"></script>
+	<script src="../js/popper-2.11.8.min.js"></script> 
+  	<script src="../js/bootstrap-5.3.8.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

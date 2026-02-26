@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Documento sem título</title>
-	<link href="css/bootstrap-5.3.8.css" rel="stylesheet">
+	<link href="../css/bootstrap-5.3.8.css" rel="stylesheet">
 </head>
 
 <body>
