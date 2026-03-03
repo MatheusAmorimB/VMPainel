@@ -1,53 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
+<head>
+   	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Painel VM</title>
-    <!-- Bootstrap -->
+    <title>Dashboard VM</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../css/bootstrap-5.3.8.css" rel="stylesheet">
+	<link href="css/bootstrap-5.3.8.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
 	
-  </head>
-	
-<script>
-		document.querySelectorAll(".status-option").forEach(item => {
+	<script>
+			document.querySelectorAll(".status-option").forEach(item => {
 
-  		item.addEventListener("click", function(e) {
-			e.preventDefault();
+			item.addEventListener("click", function(e) {
+				e.preventDefault();
 
-    let novoStatus = this.getAttribute("data-status");
+		let novoStatus = this.getAttribute("data-status");
 
-    let linha = this.closest("tr");
-    let badge = linha.querySelector(".status-badge");
+		let linha = this.closest("tr");
+		let badge = linha.querySelector(".status-badge");
 
-    // Remove cores antigas
-    badge.classList.remove("bg-warning", "bg-success", "bg-primary");
+		let linha = this.closest("tr");
+		let badge = linha.querySelector(".status-badge");
 
-    // Define nova cor conforme status
-    if (novoStatus === "Produção") {
-      badge.classList.add("bg-warning");
-    }
+		badge.classList.remove("bg-warning", "bg-success", "bg-primary");
 
-    if (novoStatus === "Faturamento") {
-      badge.classList.add("bg-primary");
-    }
 
-    if (novoStatus === "Enviado") {
-      badge.classList.add("bg-success");
-    }
+		if (novoStatus === "Produção") {
+		  badge.classList.add("bg-warning");
+		}
 
-    // Atualiza texto
-    badge.textContent = novoStatus;
+		if (novoStatus === "Faturamento") {
+		  badge.classList.add("bg-primary");
+		}
 
-  });
+		if (novoStatus === "Enviado") {
+		  badge.classList.add("bg-success");
+		}
 
-});
-</script>
+		badge.textContent = novoStatus;
+
+	  });
+				
+		document.getElementById("btnNovoPedido")
+    	.addEventListener("click", () => {
+        document.getElementById("modal").style.display = "flex";
+      });		
+
+	});
+	</script>
 	
   <body>
-	  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
+	  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5 fw-bold">
 		<div class="container-fluid">
 			<a class="navbar-brand fs-2" href="#">VM Etiquetas</a>
 
@@ -70,7 +75,7 @@
 	  </div>
 	</nav>
 	
-	<div class="container overflow-hidden text-center">
+	<div class="container overflow-hidden text-center fw-bold">
 		<div class="row gy-5">
 			<div class="col">
 				<div class="card text-center" style="width: 18rem;">
@@ -86,7 +91,7 @@
 				  <div class="card-body">
 					<h5 class="card-title">Pedidos em Produção</h5>
 					<p class="card-text fs-1 mt-4">32</p>
-					<a class="btn btn-primary" href="painel.php" role="button">Verificar Painel</a>
+					<a class="btn btn-primary" href="/public/painel.php" role="button">Verificar Painel</a>
 				  </div>
 				</div>
 			</div>
@@ -110,7 +115,16 @@
 			</div>
 		</div>
   </div>
-	 
+	  
+  <div class="mt-4 ms-3 fw-bold">
+	<p class="fs-3">Adicionar novo Pedido</p>
+    <button type="button" id="btnNovoPedido" class="btn btn-md btn-primary ms-22">
+        <i class="bi bi-plus-lg bi-plus"></i>
+    </button>
+  </div>
+	  
+	  
+  <div class="bg-secondary"> 
   <table class="table table-striped mt-5">
   <thead>
     <tr>
@@ -118,13 +132,12 @@
       <th>Cliente</th>
       <th>Status</th>
       <th>Ação</th>
-    </tr>
   </thead>
 
-  <tbody>
+  <tbody id="corpo-tabela">
     <tr>
-      <td>#001</td>
-      <td>João</td>
+      <td>PA03850VB0080E</td>
+      <td>LG Eletronics</td>
       <td>
         <span class="badge bg-warning status-badge">
           Produção
@@ -156,18 +169,20 @@
             </li>
           </ul>
         </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
+      	</td>
+    	</tr>
+ 	 </tbody>
+	</table>
+   </div>
 	  
-
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
-	
-
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="../js/popper-2.11.8.min.js"></script> 
-  	<script src="../js/bootstrap-5.3.8.js"></script>
+	  
+	  
+	  
+	  
+	  
+	  
+	<script type="module" src="js/app.js"></script> 
+	<script src="js/bootstrap-5.3.8.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
