@@ -8,8 +8,8 @@
 
 <body>
 	<div class="table-responsive">
-<table class="table table-bordered border-dark align-middle">
-   <thead class="table-danger fs-1">
+<table class="table table-bordered border-secundary align-middle">
+   <thead class="table-primary fs-1">
       <tr>
          <th scope="col">Cod.Produto</th>
          <th scope="col">Cliente</th>
