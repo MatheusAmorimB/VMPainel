@@ -10,47 +10,6 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 	
-	<script>
-			document.querySelectorAll(".status-option").forEach(item => {
-
-			item.addEventListener("click", function(e) {
-				e.preventDefault();
-
-		let novoStatus = this.getAttribute("data-status");
-
-		let linha = this.closest("tr");
-		let badge = linha.querySelector(".status-badge");
-
-		let linha = this.closest("tr");
-		let badge = linha.querySelector(".status-badge");
-
-		badge.classList.remove("bg-warning", "bg-success", "bg-primary");
-
-
-		if (novoStatus === "Produção") {
-		  badge.classList.add("bg-warning");
-		}
-
-		if (novoStatus === "Faturamento") {
-		  badge.classList.add("bg-primary");
-		}
-
-		if (novoStatus === "Enviado") {
-		  badge.classList.add("bg-success");
-		}
-
-		badge.textContent = novoStatus;
-
-	  });
-				
-		document.getElementById("btnNovoPedido")
-    	.addEventListener("click", () => {
-        document.getElementById("modal").style.display = "flex";
-      });		
-
-	});
-	</script>
-	
   <body>
 	  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5 fw-bold">
 		<div class="container-fluid">
@@ -118,9 +77,64 @@
 	  
   <div class="mt-4 ms-3 fw-bold">
 	<p class="fs-3">Adicionar novo Pedido</p>
-    <button type="button" id="btnNovoPedido" class="btn btn-md btn-primary ms-22">
+    <button type="button" id="btnNovoPedido" class="btn btn-md btn-primary ms-22" data-bs-toggle="modal" data-bs-target="#modalNovoPedido">
         <i class="bi bi-plus-lg bi-plus"></i>
     </button>
+  </div>
+
+  <div class="modal fade" id="modalNovoPedido" tabindex="-1" aria-labelledby="modalNovoPedidoLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-lg modal-dialog-centered">
+		  <div class="modal-content">
+			  <div class="modal-header">
+				  <h5 class="modal-title" id="modalNovoPedidoLabel">Novo pedido</h5>
+				  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+			  </div>
+			  <form id="formPedido">
+				  <div class="modal-body">
+					  <div class="row g-3">
+						  <div class="col-md-6">
+							  <label for="codigo" class="form-label">Código do produto</label>
+							  <input type="text" class="form-control" id="codigo" name="codigo" required>
+						  </div>
+						  <div class="col-md-6">
+							  <label for="cliente" class="form-label">Cliente</label>
+							  <input type="text" class="form-control" id="cliente" name="cliente" required>
+						  </div>
+						  <div class="col-md-6">
+							  <label for="dataEntrega" class="form-label">Data de entrega</label>
+							  <input type="date" class="form-control" id="dataEntrega" name="dataEntrega" required>
+						  </div>
+						  <div class="col-md-6">
+							  <label for="quantidade" class="form-label">Quantidade</label>
+							  <input type="number" class="form-control" id="quantidade" name="quantidade" min="1" required>
+						  </div>
+						  <div class="col-md-6">
+							  <label for="status" class="form-label">Status</label>
+							  <select class="form-select" id="status" name="status" required>
+								  <option value="" selected disabled>Selecione</option>
+								  <option value="Produção">Produção</option>
+								  <option value="Faturamento">Faturamento</option>
+								  <option value="Enviado">Enviado</option>
+							  </select>
+						  </div>
+						  <div class="col-md-6">
+							  <label for="prioridade" class="form-label">Prioridade</label>
+							  <select class="form-select" id="prioridade" name="prioridade" required>
+								  <option value="" selected disabled>Selecione</option>
+								  <option value="Alta">Alta</option>
+								  <option value="Média">Média</option>
+								  <option value="Baixa">Baixa</option>
+							  </select>
+						  </div>
+					  </div>
+				  </div>
+				  <div class="modal-footer">
+					  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+					  <button type="submit" class="btn btn-primary">Salvar pedido</button>
+				  </div>
+			  </form>
+		  </div>
+	  </div>
   </div>
 	  
 	  
@@ -172,6 +186,7 @@
       	</td>
     	</tr>
  	 </tbody>
+  <tbody id="corpo-tabela-dinamico"></tbody>
 	</table>
    </div>
 	  

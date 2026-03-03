@@ -18,7 +18,7 @@
 		 <th scope="col">Status</th>
       </tr>
    </thead>
-   <tbody class="fs-2">
+   <tbody class="fs-2" id="painel-tabela-estatica">
       <tr>
          <th scope="row">PA03850VB0080E</th>
          <td>LG</td>
@@ -55,7 +55,10 @@
 		 <td>Table cell</td>
       </tr>
    </tbody>
+   <tbody class="fs-2" id="painel-tabela-dinamico"></tbody>
 </table>
 </div>
+
+<script src="js/painel.js"></script>
 </body>
 </html>
