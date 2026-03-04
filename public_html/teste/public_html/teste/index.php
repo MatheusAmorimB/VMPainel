@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard VM</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/bootstrap-5.3.8.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <title>Dashboard VM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-5.3.8.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
-	
+
   <body>
+	  <a>TESTE</a>
 	  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5 fw-bold">
 		<div class="container-fluid">
 			<a class="navbar-brand fs-2" href="#">VM Etiquetas</a>
@@ -128,11 +128,7 @@
 						  </div>
 					  </div>
 				  </div>
-				  <div class="modal-footer">
-					  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-					  <button type="submit" class="btn btn-primary">Salvar pedido</button>
-				  </div>
-			  </form>
+				  
 		  </div>
 	  </div>
   </div>
@@ -148,54 +144,11 @@
       <th>Ação</th>
   </thead>
 
-  <tbody id="corpo-tabela">
-    <tr>
-      <td>PA03850VB0080E</td>
-      <td>LG Eletronics</td>
-      <td>
-        <span class="badge bg-warning status-badge">
-          Produção
-        </span>
-      </td>
-      <td>
-        <div class="dropdown">
-          <button class="btn btn-primary btn-sm dropdown-toggle"
-                  type="button"
-                  data-bs-toggle="dropdown">
-            Alterar
-          </button>
-
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item status-option" data-status="Produção" href="#">
-                Produção
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item status-option" data-status="Faturamento" href="#">
-                Faturamento
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item status-option" data-status="Enviado" href="#">
-                Enviado
-              </a>
-            </li>
-          </ul>
-        </div>
-      	</td>
-    	</tr>
- 	 </tbody>
-  <tbody id="corpo-tabela-dinamico"></tbody>
+  <tbody id="corpo-tabela-dinamico">
 	</table>
    </div>
 	  
-	  
-	  
-	  
-	  
-	  
-	  
+	   
 	<script type="module" src="js/app.js"></script> 
 	<script src="js/bootstrap-5.3.8.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

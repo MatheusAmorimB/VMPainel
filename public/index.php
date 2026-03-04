@@ -9,11 +9,7 @@
 	<link href="css/bootstrap-5.3.8.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> aff30c401efce19a200b037db3a2d46a5a8a932a
   <body>
 	  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5 fw-bold">
 		<div class="container-fluid">
@@ -152,44 +148,6 @@
       <th>Ação</th>
   </thead>
 
-  <tbody id="corpo-tabela">
-    <tr>
-      <td>PA03850VB0080E</td>
-      <td>LG Eletronics</td>
-      <td>
-        <span class="badge bg-warning status-badge">
-          Produção
-        </span>
-      </td>
-      <td>
-        <div class="dropdown">
-          <button class="btn btn-primary btn-sm dropdown-toggle"
-                  type="button"
-                  data-bs-toggle="dropdown">
-            Alterar
-          </button>
-
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item status-option" data-status="Produção" href="#">
-                Produção
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item status-option" data-status="Faturamento" href="#">
-                Faturamento
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item status-option" data-status="Enviado" href="#">
-                Enviado
-              </a>
-            </li>
-          </ul>
-        </div>
-      	</td>
-    	</tr>
- 	 </tbody>
   <tbody id="corpo-tabela-dinamico"></tbody>
 	</table>
    </div>
