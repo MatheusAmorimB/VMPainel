@@ -57,11 +57,10 @@
 		 <td>Table cell</td>
       </tr>
    </tbody>
->>>>>>> main
    <tbody class="fs-2" id="painel-tabela-dinamico"></tbody>
 </table>
 </div>
-
+	
 <script src="js/painel.js"></script>
 </body>
 </html>

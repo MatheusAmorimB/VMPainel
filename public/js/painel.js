@@ -16,15 +16,9 @@ function carregarPedidosNoPainel() {
     const tbody = document.getElementById("painel-tabela-dinamico");
     if (!tbody) return;
 
-<<<<<<< codex/add-modal-for-new-order-input-s4yozh
-    const pedidos = obterPedidosSalvos();
-    tbody.innerHTML = "";
-
-=======
     tbody.innerHTML = "";
 
     const pedidos = obterPedidosSalvos();
->>>>>>> main
     pedidos.forEach((pedido) => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
@@ -33,13 +27,7 @@ function carregarPedidosNoPainel() {
             <td>${formatarData(pedido.dataEntrega)}</td>
             <td>${pedido.quantidade}</td>
             <td>${pedido.status}</td>
-<<<<<<< codex/add-modal-for-new-order-input-s4yozh
-            <td>${pedido.prioridade}</td>
         `;
-
-=======
-        `;
->>>>>>> main
         tbody.appendChild(tr);
     });
 }
