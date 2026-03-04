@@ -16,11 +16,8 @@
          <th scope="col">Data de Entrega</th>
          <th scope="col">Quantidade</th>
 		 <th scope="col">Status</th>
-         <th scope="col">Prioridade</th>
       </tr>
    </thead>
-<<<<<<< codex/add-modal-for-new-order-input-s4yozh
-=======
    <tbody class="fs-2" id="painel-tabela-estatica">
       <tr>
          <th scope="row">PA03850VB0080E</th>
@@ -58,7 +55,6 @@
 		 <td>Table cell</td>
       </tr>
    </tbody>
->>>>>>> main
    <tbody class="fs-2" id="painel-tabela-dinamico"></tbody>
 </table>
 </div>

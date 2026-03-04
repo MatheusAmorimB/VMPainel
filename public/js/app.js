@@ -9,97 +9,66 @@ function salvarPedidos(pedidos) {
     localStorage.setItem(CHAVE_PEDIDOS, JSON.stringify(pedidos));
 }
 
-function formatarData(dataIso) {
-    if (!dataIso) return "-";
-    const [ano, mes, dia] = dataIso.split("-");
-    if (!ano || !mes || !dia) return dataIso;
-    return `${dia}/${mes}/${ano}`;
+function adicionarPedido(pedido) {
+    const pedidos = obterPedidosSalvos();
+    pedidos.push(pedido);
+    salvarPedidos(pedidos);
 }
 
-function classeStatus(status) {
-    if (status === "Produção") return "bg-warning text-dark";
+function corStatus(status) {
+    if (status === "Produção") return "bg-warning";
     if (status === "Faturamento") return "bg-primary";
-    if (status === "Enviado") return "bg-success";
-    return "bg-secondary";
+    return "bg-success";
 }
 
-function renderizarTabela() {
+function criarLinhaIndex(pedido) {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+        <td>${pedido.codigo}</td>
+        <td>${pedido.cliente}</td>
+        <td><span class="badge status-badge ${corStatus(pedido.status)}">${pedido.status}</span></td>
+        <td>
+            <div class="dropdown">
+                <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">Alterar</button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item status-option" data-status="Produção" href="#">Produção</a></li>
+                    <li><a class="dropdown-item status-option" data-status="Faturamento" href="#">Faturamento</a></li>
+                    <li><a class="dropdown-item status-option" data-status="Enviado" href="#">Enviado</a></li>
+                </ul>
+            </div>
+        </td>
+    `;
+
+    return tr;
+}
+
+function carregarPedidosNaTabelaIndex() {
     const tbody = document.getElementById("corpo-tabela-dinamico");
     if (!tbody) return;
 
-    const pedidos = obterPedidosSalvos();
     tbody.innerHTML = "";
+    const pedidos = obterPedidosSalvos();
+    pedidos.forEach((pedido) => tbody.appendChild(criarLinhaIndex(pedido)));
+}
 
-    pedidos.forEach((pedido) => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-            <td>${pedido.codigo}</td>
-            <td>${pedido.cliente}</td>
-            <td>${formatarData(pedido.dataEntrega)}</td>
-            <td>${pedido.quantidade}</td>
-            <td><span class="badge ${classeStatus(pedido.status)}">${pedido.status}</span></td>
-            <td>${pedido.prioridade}</td>
-            <td>
-                <div class="d-flex align-items-center gap-2">
-                    <div class="dropdown">
-                        <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Alterar
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item status-option" href="#" data-id="${pedido.id}" data-status="Produção">Produção</a></li>
-                            <li><a class="dropdown-item status-option" href="#" data-id="${pedido.id}" data-status="Faturamento">Faturamento</a></li>
-                            <li><a class="dropdown-item status-option" href="#" data-id="${pedido.id}" data-status="Enviado">Enviado</a></li>
-                        </ul>
-                    </div>
-                    <button class="btn btn-sm btn-outline-secondary btn-editar" data-id="${pedido.id}" title="Editar pedido" aria-label="Editar pedido">
-                        <i class="bi bi-pencil-square"></i>
-                    </button>
-                    <button class="btn btn-sm btn-outline-danger btn-excluir" data-id="${pedido.id}" title="Excluir pedido" aria-label="Excluir pedido">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                </div>
-            </td>
-        `;
+function configurarTrocaStatus() {
+    const tabela = document.querySelector("table");
+    if (!tabela) return;
 
-        tbody.appendChild(tr);
+    tabela.addEventListener("click", (e) => {
+        const opcao = e.target.closest(".status-option");
+        if (!opcao) return;
+
+        e.preventDefault();
+
+        const novoStatus = opcao.dataset.status;
+        const linha = opcao.closest("tr");
+        const badge = linha.querySelector(".status-badge");
+
+        badge.classList.remove("bg-warning", "bg-primary", "bg-success");
+        badge.classList.add(corStatus(novoStatus));
+        badge.textContent = novoStatus;
     });
-}
-
-function limparFormulario() {
-    const form = document.getElementById("formPedido");
-    form.reset();
-    document.getElementById("pedidoId").value = "";
-    document.getElementById("btnSalvarPedido").textContent = "Salvar pedido";
-    document.getElementById("modalNovoPedidoLabel").textContent = "Novo pedido";
-}
-
-function abrirModalEdicao(pedido) {
-    document.getElementById("pedidoId").value = pedido.id;
-    document.getElementById("codigo").value = pedido.codigo;
-    document.getElementById("cliente").value = pedido.cliente;
-    document.getElementById("dataEntrega").value = pedido.dataEntrega;
-    document.getElementById("quantidade").value = pedido.quantidade;
-    document.getElementById("status").value = pedido.status;
-    document.getElementById("prioridade").value = pedido.prioridade;
-
-    document.getElementById("btnSalvarPedido").textContent = "Salvar edição";
-    document.getElementById("modalNovoPedidoLabel").textContent = "Editar pedido";
-
-    const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById("modalNovoPedido"));
-    modal.show();
-}
-
-function atualizarStatusPedido(id, novoStatus) {
-    const pedidos = obterPedidosSalvos().map((pedido) => {
-        if (String(pedido.id) === String(id)) {
-            return { ...pedido, status: novoStatus };
-        }
-
-        return pedido;
-    });
-
-    salvarPedidos(pedidos);
-    renderizarTabela();
 }
 
 function configurarFormulario() {
@@ -110,95 +79,29 @@ function configurarFormulario() {
         e.preventDefault();
 
         const formData = new FormData(form);
-        const pedidoId = formData.get("pedidoId");
-        const pedidos = obterPedidosSalvos();
+        const pedido = {
+            codigo: formData.get("codigo"),
+            cliente: formData.get("cliente"),
+            dataEntrega: formData.get("dataEntrega"),
+            quantidade: formData.get("quantidade"),
+            status: formData.get("status"),
+            prioridade: formData.get("prioridade")
+        };
 
-        if (pedidoId) {
-            const pedidosAtualizados = pedidos.map((pedido) => {
-                if (String(pedido.id) === String(pedidoId)) {
-                    return {
-                        ...pedido,
-                        codigo: formData.get("codigo"),
-                        cliente: formData.get("cliente"),
-                        dataEntrega: formData.get("dataEntrega"),
-                        quantidade: formData.get("quantidade"),
-                        status: formData.get("status"),
-                        prioridade: formData.get("prioridade")
-                    };
-                }
+        adicionarPedido(pedido);
+        carregarPedidosNaTabelaIndex();
+        form.reset();
 
-                return pedido;
-            });
-
-            salvarPedidos(pedidosAtualizados);
-        } else {
-            pedidos.push({
-                id: `${Date.now()}-${Math.floor(Math.random() * 10000)}`,
-                codigo: formData.get("codigo"),
-                cliente: formData.get("cliente"),
-                dataEntrega: formData.get("dataEntrega"),
-                quantidade: formData.get("quantidade"),
-                status: formData.get("status"),
-                prioridade: formData.get("prioridade")
-            });
-
-            salvarPedidos(pedidos);
-        }
-
-        renderizarTabela();
-        limparFormulario();
-
-        const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById("modalNovoPedido"));
+        const modalEl = document.getElementById("modalNovoPedido");
+        const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
         modal.hide();
     });
 }
 
-function configurarAcoesTabela() {
-    const tbody = document.getElementById("corpo-tabela-dinamico");
-    if (!tbody) return;
-
-    tbody.addEventListener("click", (e) => {
-        const opcaoStatus = e.target.closest(".status-option");
-        if (opcaoStatus) {
-            e.preventDefault();
-            atualizarStatusPedido(opcaoStatus.dataset.id, opcaoStatus.dataset.status);
-            return;
-        }
-
-        const btnExcluir = e.target.closest(".btn-excluir");
-        if (btnExcluir) {
-            const id = btnExcluir.dataset.id;
-            const pedidos = obterPedidosSalvos().filter((pedido) => String(pedido.id) !== String(id));
-            salvarPedidos(pedidos);
-            renderizarTabela();
-            return;
-        }
-
-        const btnEditar = e.target.closest(".btn-editar");
-        if (btnEditar) {
-            const id = btnEditar.dataset.id;
-            const pedido = obterPedidosSalvos().find((item) => String(item.id) === String(id));
-            if (pedido) {
-                abrirModalEdicao(pedido);
-            }
-        }
-    });
-}
-
-function configurarAberturaNovoPedido() {
-    const botaoNovo = document.getElementById("btnNovoPedido");
-    if (!botaoNovo) return;
-
-    botaoNovo.addEventListener("click", () => {
-        limparFormulario();
-    });
-}
-
 function iniciarApp() {
-    renderizarTabela();
+    carregarPedidosNaTabelaIndex();
+    configurarTrocaStatus();
     configurarFormulario();
-    configurarAcoesTabela();
-    configurarAberturaNovoPedido();
 }
 
 iniciarApp();
