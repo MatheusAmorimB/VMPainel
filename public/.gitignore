@@ -7,3 +7,5 @@ _notes/
 public_html/teste/logs/
 *.log
 logs/
+.bash_profile
+.bashrc

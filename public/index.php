@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard VM</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/bootstrap-5.3.8.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <title>Dashboard VM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-5.3.8.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 
   <body>
@@ -41,7 +40,6 @@
 				  <div class="card-body">
 					<h5 class="card-title">Novos Pedidos</h5>
 					<p class="card-text fs-1 mt-4">16</p>
-					<a class="btn btn-primary" href="painel.php" role="button">Verificar Pedidos</a>
 				  </div>
 				</div>
 			</div>
@@ -50,7 +48,6 @@
 				  <div class="card-body">
 					<h5 class="card-title">Pedidos em Produção</h5>
 					<p class="card-text fs-1 mt-4">32</p>
-					<a class="btn btn-primary" href="/public/painel.php" role="button">Verificar Painel</a>
 				  </div>
 				</div>
 			</div>
@@ -59,7 +56,6 @@
 				  <div class="card-body">
 					<h5 class="card-title">Pedidos Atrasados</h5>
 					<p class="card-text fs-1 mt-4">4</p>
-					<a class="btn btn-danger" href="painel.php" role="button">Verificar Atrasados</a>
 				  </div>
 				</div>
 			</div>
@@ -68,7 +64,6 @@
 				  <div class="card-body">
 					<h5 class="card-title">Pedidos Enviados Hoje</h5>
 					<p class="card-text fs-1 mt-4">8</p>
-					<a class="btn btn-primary" href="painel.php" role="button">Verificar Enviados</a>
 				  </div>
 				</div>
 			</div>
@@ -128,11 +123,7 @@
 						  </div>
 					  </div>
 				  </div>
-				  <div class="modal-footer">
-					  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-					  <button type="submit" class="btn btn-primary">Salvar pedido</button>
-				  </div>
-			  </form>
+				  
 		  </div>
 	  </div>
   </div>
@@ -148,12 +139,11 @@
       <th>Ação</th>
   </thead>
 
-  <tbody id="corpo-tabela-dinamico"></tbody>
+  <tbody id="corpo-tabela-dinamico">
 	</table>
    </div>
 	  
-	  
-	  
+	   
 	<script type="module" src="js/app.js"></script> 
 	<script src="js/bootstrap-5.3.8.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
