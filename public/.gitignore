@@ -4,6 +4,6 @@
 _notes/
 /bower_components/
 /node_modules/
-logs/
-public_html/
+public_html/teste/logs/
 *.log
+logs/
